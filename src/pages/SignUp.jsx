@@ -40,6 +40,7 @@ function SignUp() {
       setLastName("");
       setPassword("");
       setConfirmPassword("");
+      navigate("/login");
     } catch (err) {
       setIsError(true);
       console.log(err);
