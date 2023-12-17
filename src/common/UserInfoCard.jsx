@@ -1,7 +1,20 @@
 import { Avatar, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useUserInfo } from "../context/userInfoContext";
 
 function UserInfoCard() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const userInfo = useUserInfo();
+
+  useEffect(() => {
+    if (!userInfo) return;
+    const { firstName, lastName, userName } = userInfo;
+    setFirstName(firstName);
+    setLastName(lastName);
+    setUserName(userName);
+  }, [userInfo]);
   return (
     <Stack
       direction="row"
@@ -13,8 +26,8 @@ function UserInfoCard() {
     >
       <Avatar />
       <Stack direction="column" sx={{ ml: "1em", color: "white" }}>
-        <Typography>Full Name</Typography>
-        <Typography>@username</Typography>
+        <Typography>{`${firstName} ${lastName}`}</Typography>
+        <Typography>{`@${userName}`}</Typography>
       </Stack>
     </Stack>
   );
