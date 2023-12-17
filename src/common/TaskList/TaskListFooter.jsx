@@ -1,6 +1,51 @@
 import styled from "@emotion/styled";
 import { Box, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { useUserInfo } from "../../context/userInfoContext";
+import axios, { addTaskRoute } from "../../api/api";
+import { useUserTasks } from "../../context/userTaskContext";
+
+function TaskListFooter() {
+  const [taskTitle, setTaskTitle] = useState("");
+
+  const userInfo = useUserInfo();
+  const [, setAllTasks] = useUserTasks();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!userInfo) return;
+    if (!taskTitle) return;
+
+    const payload = {
+      title: taskTitle,
+      userId: userInfo._id,
+      categoryId: userInfo.allTaskCategory,
+    };
+    const res = await axios.post(addTaskRoute, payload);
+    const newTask = res.data;
+    setAllTasks((prev) => [...prev, newTask]);
+    setTaskTitle("");
+  }
+  return (
+    <Box
+      sx={{
+        mt: "1em",
+        backgroundColor: "#212121",
+        opacity: "70%",
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <CustomTextField
+          fullWidth
+          label="Add New Task"
+          variant="filled"
+          value={taskTitle}
+          onChange={(e) => setTaskTitle(e.target.value)}
+        />
+      </form>
+    </Box>
+  );
+}
 
 const CustomTextField = styled(TextField)({
   "& .MuiInputLabel-root": {
@@ -28,19 +73,5 @@ const CustomTextField = styled(TextField)({
     },
   },
 });
-
-function TaskListFooter() {
-  return (
-    <Box
-      sx={{
-        mt: "1em",
-        backgroundColor: "#212121",
-        opacity: "70%",
-      }}
-    >
-      <CustomTextField fullWidth label="Add New Task" variant="filled" />
-    </Box>
-  );
-}
 
 export default TaskListFooter;
