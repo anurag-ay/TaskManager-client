@@ -28,7 +28,7 @@ function UserTaskProvider({ children }) {
   }, [userInfo]);
 
   return (
-    <UserTasksContext.Provider value={allTasks}>
+    <UserTasksContext.Provider value={[allTasks, setAllTasks]}>
       {children}
     </UserTasksContext.Provider>
   );
