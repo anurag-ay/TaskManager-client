@@ -6,6 +6,9 @@ import LogIn from "./pages/LogIn";
 import NotFound from "./pages/NotFound";
 import UserInfoProvider from "./context/userInfoContext";
 import UserTaskProvider from "./context/userTaskContext";
+import UserCategoryProvider from "./context/userCategoryContext";
+import CurrentActiveCategoryProvider from "./context/currentActiveCategoryContext";
+import RenderTasksProvider from "./context/renderTasksContext";
 
 function App() {
   return (
@@ -16,7 +19,13 @@ function App() {
           element={
             <UserInfoProvider>
               <UserTaskProvider>
-                <Home />
+                <UserCategoryProvider>
+                  <CurrentActiveCategoryProvider>
+                    <RenderTasksProvider>
+                      <Home />
+                    </RenderTasksProvider>
+                  </CurrentActiveCategoryProvider>
+                </UserCategoryProvider>
               </UserTaskProvider>
             </UserInfoProvider>
           }
