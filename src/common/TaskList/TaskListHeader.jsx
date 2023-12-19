@@ -99,10 +99,11 @@ function TaskListHeader() {
           <MenuItem onClick={sortByOldest}>Oldest</MenuItem>
         </Menu>
       </Stack>
-
-      <Typography variant="body1" color="white">
-        {formatDate(new Date())}
-      </Typography>
+      {activeCategory === "today" && (
+        <Typography variant="body1" color="white">
+          {formatDate(new Date())}
+        </Typography>
+      )}
     </Stack>
   );
 }
