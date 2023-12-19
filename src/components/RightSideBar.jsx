@@ -58,8 +58,8 @@ function RightSideBar() {
           color: "white",
           borderRadius: "0.3em",
           p: "1em",
+          mt: "0.4em",
           "&:hover": {
-            backgroundColor: "#6f6f6f",
             cursor: "pointer",
           },
         }}
