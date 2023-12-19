@@ -12,6 +12,7 @@ import { useActiveCategory } from "../../context/activeCategoryContext";
 import { useUserCategory } from "../../context/userCategoryContext";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useRenderTask } from "../../context/renderTasksContext";
+import formatDate from "../../utils/fromatDate";
 
 function TaskListHeader() {
   const [activeCategory] = useActiveCategory();
@@ -29,15 +30,6 @@ function TaskListHeader() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  function currentDate() {
-    let today = new Date();
-    return today.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-    });
-  }
 
   function currentCategory() {
     if (activeCategory === "today") {
@@ -104,7 +96,7 @@ function TaskListHeader() {
       </Stack>
 
       <Typography variant="body1" color="white">
-        {currentDate()}
+        {formatDate(new Date())}
       </Typography>
     </Stack>
   );

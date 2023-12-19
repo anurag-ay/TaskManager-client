@@ -6,6 +6,7 @@ import axios, { deleteTaskRoute, updateTaskRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useUserTasks } from "../../context/userTaskContext";
+import formatDate from "../../utils/fromatDate";
 
 function Task({ task }) {
   const [importantTask, setImportantTask] = useState(false);
@@ -13,7 +14,7 @@ function Task({ task }) {
   const [renderTask, setRenderTask] = useRenderTask();
   const [userTasks, setUserTasks] = useUserTasks();
   const userInfo = useUserInfo();
-  const { title } = task;
+  const { title, isDone, updatedAt } = task;
 
   async function handleTaskStatusChange(e) {
     const { _id, title, user, note, isImportant, category } = task;
@@ -105,9 +106,7 @@ function Task({ task }) {
 
   return (
     <Stack
-      direction="row"
       sx={{
-        justifyContent: "space-between",
         backgroundColor: "#212121",
         color: "white",
         borderRadius: "0.2em",
@@ -117,24 +116,40 @@ function Task({ task }) {
         },
       }}
     >
-      <Stack direction="row" sx={{ alignItems: "center" }}>
-        <Checkbox sx={{ color: "white" }} onChange={handleTaskStatusChange} />
-        <Typography ml="0.6em">{title}</Typography>
-      </Stack>
+      <Stack
+        direction="row"
+        sx={{
+          justifyContent: "space-between",
+        }}
+      >
+        <Stack direction="row" sx={{ alignItems: "center" }}>
+          <Checkbox sx={{ color: "white" }} onChange={handleTaskStatusChange} />
+          <Typography ml="0.6em">{title}</Typography>
+        </Stack>
 
-      <Stack direction="row">
-        <IconButton onClick={deleteTask} sx={{ color: "white" }}>
-          <Delete />
-        </IconButton>
+        <Stack direction="row">
+          <IconButton onClick={deleteTask} sx={{ color: "white" }}>
+            <Delete />
+          </IconButton>
 
-        <IconButton onClick={markImportant}>
-          {importantTask ? (
-            <StarIcon sx={{ color: "yellow" }} />
-          ) : (
-            <StarOutlineOutlined sx={{ color: "white" }} />
-          )}
-        </IconButton>
+          <IconButton onClick={markImportant}>
+            {importantTask ? (
+              <StarIcon sx={{ color: "yellow" }} />
+            ) : (
+              <StarOutlineOutlined sx={{ color: "white" }} />
+            )}
+          </IconButton>
+        </Stack>
       </Stack>
+      {isDone && (
+        <Stack direction="row" sx={{ p: "0.2em", pt: "0" }}>
+          <Typography
+            sx={{ fontSize: "0.8em", ml: "0.45em", fontWeight: "50" }}
+          >
+            {`Completed on ${formatDate(new Date(updatedAt))}`}
+          </Typography>
+        </Stack>
+      )}
     </Stack>
   );
 }
