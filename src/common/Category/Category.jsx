@@ -1,5 +1,5 @@
 import { Delete, LineWeight } from "@mui/icons-material";
-import { IconButton, Stack, Typography } from "@mui/material";
+import { IconButton, Stack, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import axios, { deleteCategoryRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
@@ -82,15 +82,16 @@ function Category({ category }) {
           </IconButton>
           <Typography>{capitalizeCategoryName()}</Typography>
         </Stack>
-
-        <IconButton
-          sx={{
-            color: "white",
-          }}
-          onClick={deleteCategory}
-        >
-          <Delete />
-        </IconButton>
+        <Tooltip title="Delete Category" placement="top">
+          <IconButton
+            sx={{
+              color: "white",
+            }}
+            onClick={deleteCategory}
+          >
+            <Delete />
+          </IconButton>
+        </Tooltip>
       </Stack>
     </>
   );
