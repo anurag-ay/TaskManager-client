@@ -18,7 +18,7 @@ function Task({ task }) {
   const [renderTask, setRenderTask] = useRenderTask();
   const [userTasks, setUserTasks] = useUserTasks();
   const userInfo = useUserInfo();
-  const { title, isDone, updatedAt } = task;
+  const { title, isDone, updatedAt, isImportant } = task;
 
   async function handleTaskStatusChange(e) {
     const { _id, title, user, note, isImportant, category } = task;
@@ -35,19 +35,19 @@ function Task({ task }) {
     try {
       await axios.put(updateTaskRoute, payload);
 
-      // const doneTaskInUserList = userTasks.map((task) => {
-      //   if (task._id === _id) {
-      //     return { ...task, isDone: true };
-      //   }
-      //   return task;
-      // });
-      // setUserTasks(doneTaskInUserList);
+      const doneTaskInUserList = userTasks.map((task) => {
+        if (task._id === _id) {
+          return { ...task, isDone: true };
+        }
+        return task;
+      });
+      setUserTasks(doneTaskInUserList);
 
-      // const notDoneListRender = renderTask.filter(
-      //   (task) => task.isDone === false
-      // );
+      const notDoneListRender = renderTask.filter(
+        (task) => task.isDone === false
+      );
 
-      // setRenderTask(notDoneListRender);
+      setRenderTask(notDoneListRender);
     } catch (err) {
       console.log(err);
     }
@@ -141,7 +141,7 @@ function Task({ task }) {
           </IconButton>
 
           <IconButton onClick={markImportant}>
-            {importantTask ? (
+            {isImportant ? (
               <StarIcon sx={{ color: "yellow" }} />
             ) : (
               <StarOutlineOutlined sx={{ color: "white" }} />
@@ -149,6 +149,7 @@ function Task({ task }) {
           </IconButton>
         </Stack>
       </Stack>
+
       {isDone && (
         <Stack
           direction="row"
