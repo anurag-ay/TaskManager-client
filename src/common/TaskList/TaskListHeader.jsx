@@ -52,7 +52,7 @@ function TaskListHeader() {
       const name = categories?.find(
         (category) => category._id === activeCategory
       )?.type;
-      return name?.charAt(0).toUpperCase() + name.slice(1);
+      return name?.charAt(0).toUpperCase() + name?.slice(1);
     }
   }
 
