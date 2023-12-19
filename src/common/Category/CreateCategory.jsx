@@ -66,6 +66,17 @@ const SideBarTextField = styled(TextField)(() => ({
     borderRadius: 4,
     fontSize: 16,
     fontWeight: "520",
+    borderColor: "white",
+  },
+
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#E0E3E7",
+    },
+  },
+
+  "&:hover": {
+    borderColor: "#d4dee0",
   },
 }));
 
