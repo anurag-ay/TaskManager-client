@@ -16,7 +16,6 @@ function Task({ task }) {
   const { title } = task;
 
   async function handleTaskStatusChange(e) {
-    console.log(e.target.checked);
     const { _id, title, user, note, isImportant, category } = task;
 
     const payload = {
