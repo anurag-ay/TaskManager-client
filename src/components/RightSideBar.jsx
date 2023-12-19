@@ -1,52 +1,75 @@
-import { Box, Divider, Stack } from "@mui/material";
-import React from "react";
-import Category from "../common/Category";
+import { Divider, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
 import UserInfoCard from "../common/UserInfoCard";
+import ImportantCategory from "../common/ImportantCategory";
+import TodayCategory from "../common/TodayCategory";
+import { Add } from "@mui/icons-material";
+import AllTaskCategory from "../common/AllTaskCategory";
+import DoneTaskCategory from "../common/DoneTaskCategory";
+import CreateCategory from "../common/CreateCategory";
+import Category from "../common/Category";
+import { useUserCategory } from "../context/userCategoryContext";
 
 function RightSideBar() {
+  const [isClickCreateNewCategory, setIsClickCreateNewCategory] =
+    useState(false);
+  const [categories] = useUserCategory();
+
   return (
-    <Box
+    <Stack
       sx={{
-        boxSizing: "border-box",
         height: "93.4vh",
         backgroundColor: "#212121",
-        p: "0.3em",
+        padding: "0.3em",
         overflowY: "scroll",
+        boxSizing: "border-box",
+        justifyContent: "space-between",
       }}
     >
-      <UserInfoCard />
-      <Divider />
+      <Stack spacing={1}>
+        <UserInfoCard />
+        <Divider sx={{ backgroundColor: "#606060" }} />
 
-      <Stack gap="0.4em">
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
+        <AllTaskCategory />
+
+        <TodayCategory />
+        <ImportantCategory />
+        <DoneTaskCategory />
+
+        <Divider sx={{ backgroundColor: "#606060" }} />
+
+        {categories &&
+          categories.map((category, index) => (
+            <Category category={category} key={index} />
+          ))}
+
+        {isClickCreateNewCategory && (
+          <CreateCategory
+            setIsClickCreateNewCategory={setIsClickCreateNewCategory}
+          />
+        )}
       </Stack>
-    </Box>
+
+      {/* Add New Category Button */}
+      <Stack
+        direction="row"
+        onClick={() => setIsClickCreateNewCategory(true)}
+        sx={{
+          color: "white",
+          borderRadius: "0.3em",
+          p: "1em",
+          "&:hover": {
+            backgroundColor: "#6f6f6f",
+            cursor: "pointer",
+          },
+        }}
+      >
+        <Add />
+        <Typography sx={{ ml: "0.5em", fontWeight: "400" }}>
+          Add new category
+        </Typography>
+      </Stack>
+    </Stack>
   );
 }
 
