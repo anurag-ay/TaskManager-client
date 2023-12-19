@@ -2,12 +2,15 @@ import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useActiveCategory } from "../../context/activeCategoryContext";
 import { CheckCircle } from "@mui/icons-material";
+import { useResponsive } from "../../context/responsiveContext";
 
 function DoneTaskCategory() {
   const [, setActiveCategory] = useActiveCategory();
+  const [, setRes] = useResponsive();
 
   function handleClick() {
     setActiveCategory("done");
+    setRes((prev) => !prev);
   }
 
   return (

@@ -7,6 +7,7 @@ import { useUserCategory } from "../../context/userCategoryContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useUserTasks } from "../../context/userTaskContext";
+import { useResponsive } from "../../context/responsiveContext";
 
 function Category({ category }) {
   const { type } = category;
@@ -15,6 +16,7 @@ function Category({ category }) {
   const [activeCategory, setActiveCategory] = useActiveCategory();
   const [, setRenderTask] = useRenderTask();
   const [userTasks, setUserTasks] = useUserTasks();
+  const [, setRes] = useResponsive();
 
   async function deleteCategory() {
     if (!userInfo) return;
@@ -34,7 +36,6 @@ function Category({ category }) {
         (task) => task.category !== deletedCategory._id
       );
       setUserTasks(taskListAfterCategoryDeletion);
-
       setActiveCategory(userInfo?.allTaskCategory);
       setUserCategory(newCategoryList);
       setRenderTask([]);
@@ -45,6 +46,7 @@ function Category({ category }) {
 
   function selectCategory() {
     setActiveCategory(category._id);
+    setRes((prev) => !prev);
   }
 
   function capitalizeCategoryName() {

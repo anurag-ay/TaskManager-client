@@ -1,16 +1,19 @@
 import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useActiveCategory } from "../../context/activeCategoryContext";
+import { useResponsive } from "../../context/responsiveContext";
 import { useUserInfo } from "../../context/userInfoContext";
 import { CheckBoxOutlineBlank } from "@mui/icons-material";
 
 function AllTaskCategory() {
   const [activeCategory, setActiveCategory] = useActiveCategory();
   const userInfo = useUserInfo();
+  const [, setRes] = useResponsive();
 
   function handleClick() {
     if (!userInfo) return;
     setActiveCategory(userInfo.allTaskCategory);
+    setRes((prev) => !prev);
   }
 
   return (
