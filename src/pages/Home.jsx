@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import RightSideBar from "../components/RightSideBar";
 import TaskList from "../components/TaskList";
-// import LeftSideBar from "../components/LeftSideBar";
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { useResponsive } from "../context/responsiveContext";
 
@@ -26,9 +25,6 @@ function Home() {
             <TaskList />
           </Grid>
         )}
-        {/* <Grid item lg={2}>
-          <LeftSideBar />
-        </Grid> */}
       </Grid>
     </>
   );
