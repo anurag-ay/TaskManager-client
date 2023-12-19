@@ -9,6 +9,7 @@ import UserTaskProvider from "./context/userTaskContext";
 import UserCategoryProvider from "./context/userCategoryContext";
 import RenderTasksProvider from "./context/renderTasksContext";
 import ActiveCategoryProvider from "./context/activeCategoryContext";
+import ResponsiveProvider from "./context/responsiveContext";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
                 <UserCategoryProvider>
                   <RenderTasksProvider>
                     <ActiveCategoryProvider>
-                      <Home />
+                      <ResponsiveProvider>
+                        <Home />
+                      </ResponsiveProvider>
                     </ActiveCategoryProvider>
                   </RenderTasksProvider>
                 </UserCategoryProvider>
