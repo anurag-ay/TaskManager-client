@@ -77,7 +77,7 @@ function LogIn() {
                 <Grid item xs={12}>
                   <TextField
                     name="userName"
-                    label="User Name or Email"
+                    label="User Name"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     required
