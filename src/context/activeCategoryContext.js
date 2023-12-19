@@ -25,7 +25,8 @@ function ActiveCategoryProvider({ children }) {
 
     if (activeCategory === "done") {
       const doneTask = userTasks.filter((task) => task.isDone === true);
-      setRenderTasks(doneTask);
+      setRenderTasks([]);
+      setRenderTasks([...doneTask]);
     } else if (activeCategory === "today") {
       const today = new Date();
       const todayTasks = userTasks.filter((task) => {
@@ -35,18 +36,20 @@ function ActiveCategoryProvider({ children }) {
           task.isDone === false
         );
       });
-
-      setRenderTasks(todayTasks);
+      setRenderTasks([]);
+      setRenderTasks([...todayTasks]);
     } else if (activeCategory === "important") {
       const importantTask = userTasks.filter(
         (task) => task.isImportant === true && task.isDone === false
       );
-      setRenderTasks(importantTask);
+      setRenderTasks([]);
+      setRenderTasks([...importantTask]);
     } else {
       const filteredList = userTasks.filter(
         (task) => task.category === activeCategory && task.isDone === false
       );
-      setRenderTasks(filteredList);
+      setRenderTasks([]);
+      setRenderTasks([...filteredList]);
     }
   }, [activeCategory, userTasks, setRenderTasks]);
 
