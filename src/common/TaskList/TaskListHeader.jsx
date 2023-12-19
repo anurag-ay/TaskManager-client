@@ -11,11 +11,13 @@ import {
 import { useActiveCategory } from "../../context/activeCategoryContext";
 import { useUserCategory } from "../../context/userCategoryContext";
 import { useUserInfo } from "../../context/userInfoContext";
+import { useRenderTask } from "../../context/renderTasksContext";
 
 function TaskListHeader() {
   const [activeCategory] = useActiveCategory();
   const [categories] = useUserCategory();
   const userInfo = useUserInfo();
+  const [renderTask, setRenderTask] = useRenderTask();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -52,6 +54,28 @@ function TaskListHeader() {
     }
   }
 
+  function sortByLatest() {
+    const latest = renderTask?.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+
+      return dateA - dateB;
+    });
+    setRenderTask([]);
+    setRenderTask([...latest]);
+  }
+
+  function sortByOldest() {
+    const oldest = renderTask?.sort((a, b) => {
+      const dateA = new Date(a.createdAt);
+      const dateB = new Date(b.createdAt);
+
+      return dateB - dateA;
+    });
+    setRenderTask([]);
+    setRenderTask([...oldest]);
+  }
+
   return (
     <Stack sx={{ mb: "1em" }}>
       <Stack
@@ -72,8 +96,8 @@ function TaskListHeader() {
         </Tooltip>
 
         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-          <MenuItem>Latest</MenuItem>
-          <MenuItem>Oldest</MenuItem>
+          <MenuItem onClick={sortByLatest}>Latest</MenuItem>
+          <MenuItem onClick={sortByOldest}>Oldest</MenuItem>
         </Menu>
       </Stack>
 
