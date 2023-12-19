@@ -14,7 +14,7 @@ function Home() {
     <>
       <NavBar />
       <Grid container sx={{ height: "93.4vh", boxSizing: "border-box" }}>
-        {!isRes && (
+        {(!isRes || query) && (
           <Grid item xs={12} md={3} sm={3} lg={3}>
             <RightSideBar />
           </Grid>
