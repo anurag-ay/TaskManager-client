@@ -1,12 +1,12 @@
 import { Delete, LineWeight } from "@mui/icons-material";
 import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
-import axios, { deleteCategoryRoute } from "../api/api";
-import { useUserInfo } from "../context/userInfoContext";
-import { useUserCategory } from "../context/userCategoryContext";
-import { useActiveCategory } from "../context/activeCategoryContext";
-import { useRenderTask } from "../context/renderTasksContext";
-import { useUserTasks } from "../context/userTaskContext";
+import axios, { deleteCategoryRoute } from "../../api/api";
+import { useUserInfo } from "../../context/userInfoContext";
+import { useUserCategory } from "../../context/userCategoryContext";
+import { useActiveCategory } from "../../context/activeCategoryContext";
+import { useRenderTask } from "../../context/renderTasksContext";
+import { useUserTasks } from "../../context/userTaskContext";
 
 function Category({ category }) {
   const { type } = category;

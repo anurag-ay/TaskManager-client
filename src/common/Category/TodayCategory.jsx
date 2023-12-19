@@ -1,6 +1,6 @@
 import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useActiveCategory } from "../context/activeCategoryContext";
+import { useActiveCategory } from "../../context/activeCategoryContext";
 import { Cloud } from "@mui/icons-material";
 
 function TodayCategory() {

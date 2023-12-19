@@ -1,13 +1,13 @@
 import { Divider, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import UserInfoCard from "../common/UserInfoCard";
-import ImportantCategory from "../common/ImportantCategory";
-import TodayCategory from "../common/TodayCategory";
+import ImportantCategory from "../common/Category/ImportantCategory";
+import TodayCategory from "../common/Category/TodayCategory";
 import { Add } from "@mui/icons-material";
-import AllTaskCategory from "../common/AllTaskCategory";
-import DoneTaskCategory from "../common/DoneTaskCategory";
-import CreateCategory from "../common/CreateCategory";
-import Category from "../common/Category";
+import AllTaskCategory from "../common/Category/AllTaskCategory";
+import DoneTaskCategory from "../common/Category/DoneTaskCategory";
+import CreateCategory from "../common/Category/CreateCategory";
+import Category from "../common/Category/Category";
 import { useUserCategory } from "../context/userCategoryContext";
 
 function RightSideBar() {

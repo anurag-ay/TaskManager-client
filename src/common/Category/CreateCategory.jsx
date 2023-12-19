@@ -1,10 +1,10 @@
 // import styled from "@emotion/styled";
 import { Box, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
-import axios, { addCategoryRoute } from "../api/api";
-import { useUserInfo } from "../context/userInfoContext";
-import { useUserCategory } from "../context/userCategoryContext";
-import { useActiveCategory } from "../context/activeCategoryContext";
+import axios, { addCategoryRoute } from "../../api/api";
+import { useUserInfo } from "../../context/userInfoContext";
+import { useUserCategory } from "../../context/userCategoryContext";
+import { useActiveCategory } from "../../context/activeCategoryContext";
 
 function CreateCategory({ setIsClickCreateNewCategory }) {
   const [type, setType] = useState("");

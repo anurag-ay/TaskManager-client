@@ -1,7 +1,7 @@
 import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
-import { useActiveCategory } from "../context/activeCategoryContext";
-import { useUserInfo } from "../context/userInfoContext";
+import { useActiveCategory } from "../../context/activeCategoryContext";
+import { useUserInfo } from "../../context/userInfoContext";
 import { CheckBoxOutlineBlank } from "@mui/icons-material";
 
 function AllTaskCategory() {
