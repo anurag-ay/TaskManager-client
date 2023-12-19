@@ -47,6 +47,9 @@ function Category({ category }) {
     setActiveCategory(category._id);
   }
 
+  function capitalizeCategoryName() {
+    return type?.charAt(0).toUpperCase() + type.slice(1);
+  }
   return (
     <>
       <Stack
@@ -77,7 +80,7 @@ function Category({ category }) {
           <IconButton sx={{ color: "#c843ff" }}>
             <LineWeight />
           </IconButton>
-          <Typography>{type}</Typography>
+          <Typography>{capitalizeCategoryName()}</Typography>
         </Stack>
 
         <IconButton
