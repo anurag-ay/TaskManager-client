@@ -1,5 +1,5 @@
-// import styled from "@emotion/styled";
-import { Box, Stack, TextField } from "@mui/material";
+import styled from "@emotion/styled";
+import { Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import axios, { addCategoryRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
@@ -37,17 +37,36 @@ function CreateCategory({ setIsClickCreateNewCategory }) {
       <Stack
         direction="row"
         sx={{
-          backgroundColor: "#232323",
+          backgroundColor: "#212121",
           borderRadius: "0.2em",
           color: "white",
         }}
       >
-        <Box component="form" onSubmit={createCategory}>
-          <TextField autoFocus onChange={(e) => setType(e.target.value)} />
-        </Box>
+        <Stack
+          direction="row"
+          component="form"
+          onSubmit={createCategory}
+          sx={{ flexGrow: "1" }}
+        >
+          <SideBarTextField
+            fullWidth
+            autoFocus
+            color="secondary"
+            onChange={(e) => setType(e.target.value)}
+          />
+        </Stack>
       </Stack>
     </>
   );
 }
+
+const SideBarTextField = styled(TextField)(() => ({
+  "& .MuiInputBase-input": {
+    color: "white",
+    borderRadius: 4,
+    fontSize: 16,
+    fontWeight: "520",
+  },
+}));
 
 export default CreateCategory;
