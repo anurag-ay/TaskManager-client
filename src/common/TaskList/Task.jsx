@@ -37,16 +37,13 @@ function Task({ task }) {
 
       const doneTaskInUserList = userTasks.map((task) => {
         if (task._id === _id) {
-          return { ...task, isDone: true };
+          return { ...task, isDone: !isDone };
         }
         return task;
       });
       setUserTasks(doneTaskInUserList);
 
-      const notDoneListRender = renderTask.filter(
-        (task) => task.isDone === false
-      );
-
+      const notDoneListRender = renderTask.filter((task) => task._id !== _id);
       setRenderTask(notDoneListRender);
     } catch (err) {
       console.log(err);
