@@ -35,7 +35,7 @@ function Category({ category }) {
       );
       setUserTasks(taskListAfterCategoryDeletion);
 
-      setActiveCategory("");
+      setActiveCategory(userInfo?.allTaskCategory);
       setUserCategory(newCategoryList);
       setRenderTask([]);
     } catch (err) {
