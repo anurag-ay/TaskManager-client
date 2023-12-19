@@ -7,8 +7,8 @@ import NotFound from "./pages/NotFound";
 import UserInfoProvider from "./context/userInfoContext";
 import UserTaskProvider from "./context/userTaskContext";
 import UserCategoryProvider from "./context/userCategoryContext";
-import CurrentActiveCategoryProvider from "./context/currentActiveCategoryContext";
 import RenderTasksProvider from "./context/renderTasksContext";
+import ActiveCategoryProvider from "./context/activeCategoryContext";
 
 function App() {
   return (
@@ -20,11 +20,11 @@ function App() {
             <UserInfoProvider>
               <UserTaskProvider>
                 <UserCategoryProvider>
-                  <CurrentActiveCategoryProvider>
-                    <RenderTasksProvider>
+                  <RenderTasksProvider>
+                    <ActiveCategoryProvider>
                       <Home />
-                    </RenderTasksProvider>
-                  </CurrentActiveCategoryProvider>
+                    </ActiveCategoryProvider>
+                  </RenderTasksProvider>
                 </UserCategoryProvider>
               </UserTaskProvider>
             </UserInfoProvider>
