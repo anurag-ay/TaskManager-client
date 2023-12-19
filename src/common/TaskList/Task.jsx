@@ -1,4 +1,8 @@
-import { Delete, StarOutlineOutlined } from "@mui/icons-material";
+import {
+  CalendarMonth,
+  Delete,
+  StarOutlineOutlined,
+} from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { Checkbox, IconButton, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
@@ -124,7 +128,7 @@ function Task({ task }) {
       >
         <Stack direction="row" sx={{ alignItems: "center" }}>
           <Checkbox sx={{ color: "white" }} onChange={handleTaskStatusChange} />
-          <Typography ml="0.6em">{title}</Typography>
+          <Typography ml="0.6em">{isDone ? <s>{title}</s> : title}</Typography>
         </Stack>
 
         <Stack direction="row">
@@ -142,10 +146,18 @@ function Task({ task }) {
         </Stack>
       </Stack>
       {isDone && (
-        <Stack direction="row" sx={{ p: "0.2em", pt: "0" }}>
-          <Typography
-            sx={{ fontSize: "0.8em", ml: "0.45em", fontWeight: "50" }}
-          >
+        <Stack
+          direction="row"
+          sx={{
+            p: "0.2em",
+            pt: "0",
+            alignItems: "center",
+          }}
+        >
+          <CalendarMonth
+            sx={{ width: "0.6em", height: "0.6em", mb: "0.11em", ml: "0.2em" }}
+          />
+          <Typography sx={{ fontSize: "0.8em", ml: "0.2em", fontWeight: "50" }}>
             {`Completed on ${formatDate(new Date(updatedAt))}`}
           </Typography>
         </Stack>
