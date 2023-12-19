@@ -15,12 +15,12 @@ export const getUserRoute = "/api/v1/user/getUser"; //:userId
 // Category Routes
 export const addCategoryRoute = "/api/v1/category";
 export const getCategoriesByUserIdRoute = "/api/v1/category"; //:userId
-export const deleteCategoryRoute = "/api/v1/category";
+export const deleteCategoryRoute = "/api/v1/category"; //:userId/:categoryId/
 export const updateCategoryRoute = "/api/v1/category";
 
 // Task Routes
 export const addTaskRoute = "/api/v1/task";
-export const deleteTaskRoute = "/api/v1/task";
+export const deleteTaskRoute = "/api/v1/task"; // /:userId/:categoryId/:taskId
 export const updateTaskRoute = "/api/v1/task";
 export const getAllTaskRoute = "/api/v1/task";
 export const getTaskByIdRoute = "/api/v1/task"; //:taskId
