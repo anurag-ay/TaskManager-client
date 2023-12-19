@@ -12,7 +12,7 @@ import { useActiveCategory } from "../../context/activeCategoryContext";
 import { useUserCategory } from "../../context/userCategoryContext";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useRenderTask } from "../../context/renderTasksContext";
-import formatDate from "../../utils/fromatDate";
+import formatDate from "../../utils/formatDate";
 
 function TaskListHeader() {
   const [activeCategory] = useActiveCategory();
