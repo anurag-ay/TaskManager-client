@@ -1,6 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { useUserTasks } from "./userTaskContext";
-
+import React, { createContext, useContext, useState } from "react";
 const RenderTaskContext = createContext(null);
 
 export function useRenderTask() {
@@ -9,12 +7,6 @@ export function useRenderTask() {
 
 function RenderTasksProvider({ children }) {
   const [renderTask, setRenderTask] = useState([]);
-  const [userTask] = useUserTasks();
-
-  useEffect(() => {
-    if (!userTask) return;
-    setRenderTask(userTask);
-  }, [userTask]);
 
   return (
     <RenderTaskContext.Provider value={[renderTask, setRenderTask]}>
