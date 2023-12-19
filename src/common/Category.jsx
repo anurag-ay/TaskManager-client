@@ -1,4 +1,4 @@
-import { Delete, Task } from "@mui/icons-material";
+import { Delete, LineWeight } from "@mui/icons-material";
 import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import axios, { deleteCategoryRoute } from "../api/api";
@@ -74,7 +74,9 @@ function Category({ category }) {
             color: "white",
           }}
         >
-          <Task />
+          <IconButton sx={{ color: "#c843ff" }}>
+            <LineWeight />
+          </IconButton>
           <Typography>{type}</Typography>
         </Stack>
 

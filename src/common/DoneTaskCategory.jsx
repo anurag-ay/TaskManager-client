@@ -1,6 +1,7 @@
-import { Stack, Typography } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useActiveCategory } from "../context/activeCategoryContext";
+import { CheckCircle } from "@mui/icons-material";
 
 function DoneTaskCategory() {
   const [, setActiveCategory] = useActiveCategory();
@@ -34,6 +35,9 @@ function DoneTaskCategory() {
             color: "white",
           }}
         >
+          <IconButton sx={{ color: "#16bc79" }}>
+            <CheckCircle />
+          </IconButton>
           <Typography>Done</Typography>
         </Stack>
       </Stack>

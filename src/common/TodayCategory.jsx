@@ -1,6 +1,7 @@
-import { Stack, Typography } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useActiveCategory } from "../context/activeCategoryContext";
+import { Cloud } from "@mui/icons-material";
 
 function TodayCategory() {
   const [, setActiveCategory] = useActiveCategory();
@@ -34,6 +35,9 @@ function TodayCategory() {
             color: "white",
           }}
         >
+          <IconButton sx={{ color: "#007acc" }}>
+            <Cloud />
+          </IconButton>
           <Typography>Today</Typography>
         </Stack>
       </Stack>

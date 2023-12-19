@@ -1,7 +1,8 @@
-import { Stack, Typography } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useActiveCategory } from "../context/activeCategoryContext";
 import { useUserInfo } from "../context/userInfoContext";
+import { CheckBoxOutlineBlank } from "@mui/icons-material";
 
 function AllTaskCategory() {
   const [activeCategory, setActiveCategory] = useActiveCategory();
@@ -41,6 +42,9 @@ function AllTaskCategory() {
             color: "white",
           }}
         >
+          <IconButton sx={{ color: "#d0ff11" }}>
+            <CheckBoxOutlineBlank />
+          </IconButton>
           <Typography>To Do</Typography>
         </Stack>
       </Stack>
