@@ -4,12 +4,16 @@ import React, { useState } from "react";
 import { useUserInfo } from "../../context/userInfoContext";
 import axios, { addTaskRoute } from "../../api/api";
 import { useUserTasks } from "../../context/userTaskContext";
+import { useRenderTask } from "../../context/renderTasksContext";
+import { useActiveCategory } from "../../context/activeCategoryContext";
 
 function TaskListFooter() {
   const [taskTitle, setTaskTitle] = useState("");
 
   const userInfo = useUserInfo();
   const [, setAllTasks] = useUserTasks();
+  const [, setRenderTask] = useRenderTask();
+  const [activeCategory] = useActiveCategory();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,10 +23,11 @@ function TaskListFooter() {
     const payload = {
       title: taskTitle,
       userId: userInfo._id,
-      categoryId: userInfo.allTaskCategory,
+      categoryId: activeCategory,
     };
     const res = await axios.post(addTaskRoute, payload);
     const newTask = res.data;
+    setRenderTask((prev) => [...prev, newTask]);
     setAllTasks((prev) => [...prev, newTask]);
     setTaskTitle("");
   }
