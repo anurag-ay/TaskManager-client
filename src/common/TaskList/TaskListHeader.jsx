@@ -52,6 +52,7 @@ function TaskListHeader() {
   }
 
   function sortByLatest() {
+    setAnchorEl(null);
     const latest = renderTask?.sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
@@ -63,6 +64,7 @@ function TaskListHeader() {
   }
 
   function sortByOldest() {
+    setAnchorEl(null);
     const oldest = renderTask?.sort((a, b) => {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
