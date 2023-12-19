@@ -4,7 +4,14 @@ import {
   StarOutlineOutlined,
 } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
-import { Checkbox, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Checkbox,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+  Zoom,
+} from "@mui/material";
 import React, { useState } from "react";
 import axios, { deleteTaskRoute, updateTaskRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
@@ -133,17 +140,20 @@ function Task({ task }) {
         </Stack>
 
         <Stack direction="row">
-          <IconButton onClick={deleteTask} sx={{ color: "white" }}>
-            <Delete />
-          </IconButton>
-
-          <IconButton onClick={markImportant}>
-            {isImportant ? (
-              <StarIcon sx={{ color: "yellow" }} />
-            ) : (
-              <StarOutlineOutlined sx={{ color: "white" }} />
-            )}
-          </IconButton>
+          <Tooltip enterDelay={2000} title="Delete Task" placement="top">
+            <IconButton onClick={deleteTask} sx={{ color: "white" }}>
+              <Delete />
+            </IconButton>
+          </Tooltip>
+          <Tooltip enterDelay={1000} title="Mark Important" placement="top">
+            <IconButton onClick={markImportant}>
+              {isImportant ? (
+                <StarIcon sx={{ color: "yellow" }} />
+              ) : (
+                <StarOutlineOutlined sx={{ color: "white" }} />
+              )}
+            </IconButton>
+          </Tooltip>
         </Stack>
       </Stack>
 
