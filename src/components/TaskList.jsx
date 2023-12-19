@@ -4,8 +4,20 @@ import backgroundImage from "../assets/backgroundImages/Background.jpg";
 import TaskListHeader from "../common/TaskList/TaskListHeader";
 import TaskBody from "../common/TaskList/TaskBody";
 import TaskListFooter from "../common/TaskList/TaskListFooter";
+import { useActiveCategory } from "../context/activeCategoryContext";
 
 function TaskList() {
+  const [activeCategory] = useActiveCategory();
+  function isSpecificCategory() {
+    if (
+      activeCategory === "today" ||
+      activeCategory === "important" ||
+      activeCategory === "done" ||
+      !activeCategory
+    )
+      return false;
+    return true;
+  }
   return (
     <Box
       sx={{
@@ -24,9 +36,11 @@ function TaskList() {
         <Grid item>
           <TaskBody />
         </Grid>
-        <Grid item>
-          <TaskListFooter />
-        </Grid>
+        {isSpecificCategory() && (
+          <Grid item>
+            <TaskListFooter />
+          </Grid>
+        )}
       </Grid>
     </Box>
   );
