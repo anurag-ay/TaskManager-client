@@ -10,10 +10,17 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
+import { useResponsive } from "../context/responsiveContext";
 
 function NavBar() {
   const theme = useTheme();
   const query = useMediaQuery(theme.breakpoints.down("sm"));
+  const [, setRes] = useResponsive();
+
+  function back() {
+    setRes((prev) => !prev);
+  }
+
   return (
     <Box>
       <AppBar sx={{ backgroundColor: "#212121" }} position="static">
@@ -36,7 +43,7 @@ function NavBar() {
             </Stack>
 
             {query && (
-              <IconButton sx={{ color: "white" }}>
+              <IconButton onClick={back} sx={{ color: "white" }}>
                 <ArrowCircleLeft />
               </IconButton>
             )}
