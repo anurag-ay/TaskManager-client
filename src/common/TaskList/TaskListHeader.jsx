@@ -56,7 +56,7 @@ function TaskListHeader() {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
 
-      return dateA - dateB;
+      return dateB - dateA;
     });
     setRenderTask([]);
     setRenderTask([...latest]);
@@ -67,7 +67,7 @@ function TaskListHeader() {
       const dateA = new Date(a.createdAt);
       const dateB = new Date(b.createdAt);
 
-      return dateB - dateA;
+      return dateA - dateB;
     });
     setRenderTask([]);
     setRenderTask([...oldest]);
