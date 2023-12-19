@@ -1,10 +1,18 @@
 import { Stack, Typography } from "@mui/material";
 import React from "react";
+import { useActiveCategory } from "../context/activeCategoryContext";
 
 function ImportantCategory() {
+  const [, setActiveCategory] = useActiveCategory();
+
+  function handleClick() {
+    setActiveCategory("important");
+  }
+
   return (
     <>
       <Stack
+        onClick={handleClick}
         direction="row"
         sx={{
           backgroundColor: "#232323",
