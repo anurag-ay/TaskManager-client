@@ -31,7 +31,7 @@ function Task({ task }) {
   const { title, isDone, updatedAt, isImportant } = task;
 
   const [isEdit, setIsEdit] = useState(false);
-  const [editedText, setEditedText] = useState(title);
+  const [editedText, setEditedText] = useState("");
 
   const editTaskRef = useRef();
 
@@ -182,6 +182,11 @@ function Task({ task }) {
     }
   }
 
+  function handleIdEdit() {
+    setIsEdit((prev) => !prev);
+    setEditedText(title);
+  }
+
   return (
     <Stack
       sx={{
@@ -234,10 +239,7 @@ function Task({ task }) {
         </Stack>
 
         <Stack direction="row">
-          <IconButton
-            sx={{ color: "white" }}
-            onClick={() => setIsEdit((prev) => !prev)}
-          >
+          <IconButton sx={{ color: "white" }} onClick={handleIdEdit}>
             <Edit />
           </IconButton>
           <Tooltip enterDelay={2000} title="Delete Task" placement="top">
