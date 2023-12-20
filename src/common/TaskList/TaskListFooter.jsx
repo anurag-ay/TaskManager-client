@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, TextField } from "@mui/material";
+import { Box, IconButton, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useUserInfo } from "../../context/userInfoContext";
 import axios, { addTaskRoute } from "../../api/api";
@@ -7,6 +7,7 @@ import { useUserTasks } from "../../context/userTaskContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
 import { useIsProgress } from "../../context/isProgressContext";
+import Publish from "@mui/icons-material/Publish";
 
 function TaskListFooter({ taskBodyRef }) {
   const [taskTitle, setTaskTitle] = useState("");
@@ -51,7 +52,7 @@ function TaskListFooter({ taskBodyRef }) {
         opacity: "70%",
       }}
     >
-      <form onSubmit={handleSubmit}>
+      <Stack component="form" direction="row" onSubmit={handleSubmit}>
         <CustomTextField
           fullWidth
           label="Add New Task"
@@ -59,7 +60,10 @@ function TaskListFooter({ taskBodyRef }) {
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
         />
-      </form>
+        <IconButton type="submit" sx={{ color: "white" }}>
+          <Publish />
+        </IconButton>
+      </Stack>
     </Box>
   );
 }
