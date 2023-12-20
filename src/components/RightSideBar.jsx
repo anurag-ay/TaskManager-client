@@ -1,4 +1,12 @@
-import { Divider, Stack, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Divider,
+  Slide,
+  Snackbar,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useRef, useState } from "react";
 import UserInfoCard from "../common/UserInfoCard";
 import ImportantCategory from "../common/Category/ImportantCategory";
@@ -15,6 +23,8 @@ function RightSideBar() {
     useState(false);
   const [categories] = useUserCategory();
   const [isFocus, setFocus] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const categoryRef = useRef();
 
@@ -22,6 +32,12 @@ function RightSideBar() {
     setFocus(true);
     setIsClickCreateNewCategory(true);
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      setIsError(false);
+    }
+  };
 
   return (
     <Stack
@@ -54,6 +70,8 @@ function RightSideBar() {
 
         {isClickCreateNewCategory && (
           <CreateCategory
+            setErrorMessage={setErrorMessage}
+            setIsError={setIsError}
             isFocus={isFocus}
             setFocus={setFocus}
             categoryRef={categoryRef}
@@ -81,6 +99,18 @@ function RightSideBar() {
           Add new category
         </Typography>
       </Stack>
+
+      <Snackbar
+        TransitionComponent={Slide}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        open={isError}
+        autoHideDuration={2000}
+        onClose={handleClose}
+      >
+        <Alert severity="error">
+          <AlertTitle>{errorMessage}</AlertTitle>
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 }

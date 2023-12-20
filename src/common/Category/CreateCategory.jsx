@@ -11,6 +11,8 @@ function CreateCategory({
   categoryRef,
   setFocus,
   isFocus,
+  setErrorMessage,
+  setIsError,
 }) {
   const [type, setType] = useState("");
   const userInfo = useUserInfo();
@@ -53,7 +55,13 @@ function CreateCategory({
       setActiveCategory(newCategory._id);
       setIsClickCreateNewCategory(false);
     } catch (err) {
-      console.log(err);
+      setIsError(true);
+
+      if (err.name === "AxiosError") {
+        setErrorMessage(err.response.data);
+      } else {
+        setErrorMessage(err.message);
+      }
     }
   }
 
