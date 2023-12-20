@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import backgroundImage from "../assets/backgroundImages/Background.jpg";
 import TaskListHeader from "../common/TaskList/TaskListHeader";
 import TaskBody from "../common/TaskList/TaskBody";
@@ -8,6 +8,8 @@ import { useActiveCategory } from "../context/activeCategoryContext";
 
 function TaskList() {
   const [activeCategory] = useActiveCategory();
+  const taskBodyRef = useRef();
+
   function isSpecificCategory() {
     if (
       activeCategory === "today" ||
@@ -34,11 +36,11 @@ function TaskList() {
           <TaskListHeader />
         </Grid>
         <Grid item>
-          <TaskBody />
+          <TaskBody taskBodyRef={taskBodyRef} />
         </Grid>
         {isSpecificCategory() && (
           <Grid item>
-            <TaskListFooter />
+            <TaskListFooter taskBodyRef={taskBodyRef} />
           </Grid>
         )}
       </Grid>

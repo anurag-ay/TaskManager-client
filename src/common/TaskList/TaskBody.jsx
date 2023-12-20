@@ -3,11 +3,15 @@ import React from "react";
 import Task from "./Task";
 import { useRenderTask } from "../../context/renderTasksContext";
 
-function TaskBody() {
+function TaskBody({ taskBodyRef }) {
   const [renderTask] = useRenderTask();
 
   return (
-    <Stack gap={1} sx={{ height: "62vh", overflowY: "scroll" }}>
+    <Stack
+      ref={taskBodyRef}
+      gap={1}
+      sx={{ height: "62vh", overflowY: "scroll" }}
+    >
       {renderTask &&
         renderTask.map((item, index) => <Task key={index} task={item} />)}
     </Stack>

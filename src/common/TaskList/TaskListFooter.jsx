@@ -7,7 +7,7 @@ import { useUserTasks } from "../../context/userTaskContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
 
-function TaskListFooter() {
+function TaskListFooter({ taskBodyRef }) {
   const [taskTitle, setTaskTitle] = useState("");
 
   const userInfo = useUserInfo();
@@ -17,6 +17,10 @@ function TaskListFooter() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const container = taskBodyRef.current;
+    container.scrollTop = container.scrollHeight;
+
     if (!userInfo) return;
     if (!taskTitle) return;
 
