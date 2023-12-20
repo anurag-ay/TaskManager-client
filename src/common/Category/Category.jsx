@@ -26,22 +26,22 @@ function Category({ category }) {
     setIsProgress(true);
 
     try {
-      const res = await axios.delete(
-        `${deleteCategoryRoute}/${userInfo._id}/${category._id}`
-      );
-      const deletedCategory = res.data;
-
       const newCategoryList = categories.filter(
-        (category) => category._id !== deletedCategory._id
+        (filterCategory) => filterCategory._id !== category._id
       );
+      setUserCategory(newCategoryList);
+      setRenderTask([]);
 
       const taskListAfterCategoryDeletion = userTasks.filter(
-        (task) => task.category !== deletedCategory._id
+        (task) => task.category !== category._id
       );
       setUserTasks(taskListAfterCategoryDeletion);
       setActiveCategory(userInfo?.allTaskCategory);
-      setUserCategory(newCategoryList);
-      setRenderTask([]);
+
+      await axios.delete(
+        `${deleteCategoryRoute}/${userInfo._id}/${category._id}`
+      );
+
       setIsProgress(false);
     } catch (err) {
       setIsProgress(false);

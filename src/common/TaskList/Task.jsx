@@ -41,8 +41,6 @@ function Task({ task }) {
       category,
     };
     try {
-      await axios.put(updateTaskRoute, payload);
-
       const doneTaskInUserList = userTasks.map((task) => {
         if (task._id === _id) {
           return { ...task, isDone: !isDone };
@@ -53,6 +51,9 @@ function Task({ task }) {
 
       const notDoneListRender = renderTask.filter((task) => task._id !== _id);
       setRenderTask(notDoneListRender);
+
+      await axios.put(updateTaskRoute, payload);
+
       setIsProgress(false);
     } catch (err) {
       setIsProgress(false);
@@ -98,22 +99,22 @@ function Task({ task }) {
     setIsProgress(true);
 
     try {
-      const res = await axios.delete(
-        `${deleteTaskRoute}/${userInfo._id}/${userInfo.allTaskCategory}/${task._id}`
-      );
-
-      const deletedTask = res.data;
       const taskListAfterDeletionInRender = renderTask.filter(
-        (task) => task._id !== deletedTask._id
+        (filterTask) => filterTask._id !== task._id
       );
 
       setRenderTask(taskListAfterDeletionInRender);
 
       const taskListAfterDeletionInUserTask = userTasks.filter(
-        (task) => task._id !== deletedTask._id
+        (filterTask) => filterTask._id !== task._id
       );
 
       setUserTasks(taskListAfterDeletionInUserTask);
+
+      await axios.delete(
+        `${deleteTaskRoute}/${userInfo._id}/${userInfo.allTaskCategory}/${task._id}`
+      );
+
       setIsProgress(false);
     } catch (err) {
       setIsProgress(false);
