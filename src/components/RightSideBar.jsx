@@ -1,5 +1,5 @@
 import { Divider, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import UserInfoCard from "../common/UserInfoCard";
 import ImportantCategory from "../common/Category/ImportantCategory";
 import TodayCategory from "../common/Category/TodayCategory";
@@ -15,8 +15,11 @@ function RightSideBar() {
     useState(false);
   const [categories] = useUserCategory();
 
+  const categoryRef = useRef();
+
   return (
     <Stack
+      ref={categoryRef}
       sx={{
         height: "93.4vh",
         backgroundColor: "#212121",
@@ -45,6 +48,7 @@ function RightSideBar() {
 
         {isClickCreateNewCategory && (
           <CreateCategory
+            categoryRef={categoryRef}
             setIsClickCreateNewCategory={setIsClickCreateNewCategory}
           />
         )}

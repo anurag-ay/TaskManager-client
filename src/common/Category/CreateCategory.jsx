@@ -6,7 +6,7 @@ import { useUserInfo } from "../../context/userInfoContext";
 import { useUserCategory } from "../../context/userCategoryContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
 
-function CreateCategory({ setIsClickCreateNewCategory }) {
+function CreateCategory({ setIsClickCreateNewCategory, categoryRef }) {
   const [type, setType] = useState("");
   const userInfo = useUserInfo();
   const [, setUserCategory] = useUserCategory();
@@ -14,6 +14,9 @@ function CreateCategory({ setIsClickCreateNewCategory }) {
 
   async function createCategory(e) {
     e.preventDefault();
+
+    const container = categoryRef.current;
+    container.scrollTop = container.scrollHeight;
     if (!userInfo) return;
     if (!type) return;
 
