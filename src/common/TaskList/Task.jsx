@@ -11,7 +11,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import axios, { deleteTaskRoute, updateTaskRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useRenderTask } from "../../context/renderTasksContext";
@@ -20,8 +20,6 @@ import { useIsProgress } from "../../context/isProgressContext";
 import formatDate from "../../utils/formatDate";
 
 function Task({ task }) {
-  const [importantTask, setImportantTask] = useState(false);
-
   const [renderTask, setRenderTask] = useRenderTask();
   const [userTasks, setUserTasks] = useUserTasks();
   const userInfo = useUserInfo();
@@ -63,17 +61,15 @@ function Task({ task }) {
 
   async function markImportant() {
     setIsProgress(true);
-    setImportantTask((prev) => !prev);
 
-    const { _id, title, user, note, isDone, category } = task;
+    const { _id, title, user, note, isDone, isImportant, category } = task;
 
     const markImportantTasks = userTasks.map((task) => {
       if (task._id === _id) {
-        return { ...task, isImportant: !importantTask };
+        return { ...task, isImportant: !isImportant };
       }
       return task;
     });
-
     setUserTasks(markImportantTasks);
 
     const payload = {
@@ -82,7 +78,7 @@ function Task({ task }) {
       user,
       note,
       isDone,
-      isImportant: !importantTask,
+      isImportant: !isImportant,
       category,
     };
     try {
