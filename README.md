@@ -87,18 +87,17 @@ When frontend and backend got up and running you can
 
 ### Mobile View
 
-<div style="display: flex; justify-content: space-around;">
-<div  style="display:flex; align-items:center;flex-direction:column;">
-  <img style="height: 450px;" src="https://github.com/anurag-ay/TaskManager-client/assets/50657380/7d16a731-1d65-4b03-a1c7-ca78088ff056">
-  <p>1. Categories</p>
-  </div>
-
-  <div  style="display:flex; align-items:center;flex-direction:column;">
-  <img style="height: 450px;" src="https://github.com/anurag-ay/TaskManager-client/assets/50657380/61dc0727-1c5c-4b31-9379-5e80515ff8fc">
-  <p>2. Tasks</p>
-  </div>
+<div style="display: flex; justify-content: space-around;\"> 
+<div style="display: flex; align-items: center; flex-direction: column;\"> 
+<img style="height: 450px;\" src="https://github.com/anurag-ay/TaskManager-client/assets/50657380/7d16a731-1d65-4b03-a1c7-ca78088ff056\"> 
+<p>1. Categories</p> 
 </div>
 
+<div style="display: flex; align-items: center; flex-direction: column;\"> 
+<img style="height: 450px;\" src="https://github.com/anurag-ay/TaskManager-client/assets/50657380/61dc0727-1c5c-4b31-9379-5e80515ff8fc\"> 
+<p>2. Tasks</p> 
+</div> 
+</div>
 ### License
 
 ISC © **_termTranslate_**
