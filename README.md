@@ -15,12 +15,17 @@
 
 ---
 
-## Requirements
+## Testing Credentials for live website
+
+1. **UserName** : `test`
+2. **Password** : `Test123@`
+
+## Requirements for local machine
 
 1. **NodeJs** version `16.17.0` or above
 2. **MongoDB**
 
-## Installation
+## Installation on local machine
 
 ### Step 1 Install Backend
 
