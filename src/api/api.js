@@ -1,10 +1,13 @@
 import axios from "axios";
 
-// const BASE_URL_DEV = "http://localhost:5000";
-const BASE_URL_PROD = "https://task-manager-server-lake.vercel.app";
+let BASE_URL = "http://localhost:5000";
+
+if (process.env.NODE_ENV === "production") {
+  BASE_URL = "https://task-manager-server-lake.vercel.app";
+}
 
 // Axios Instance
-export default axios.create({ baseURL: BASE_URL_PROD });
+export default axios.create({ baseURL: BASE_URL });
 
 // Routes
 
