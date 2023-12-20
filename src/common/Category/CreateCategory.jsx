@@ -1,16 +1,38 @@
 import styled from "@emotion/styled";
 import { Stack, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios, { addCategoryRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useUserCategory } from "../../context/userCategoryContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
 
-function CreateCategory({ setIsClickCreateNewCategory, categoryRef }) {
+function CreateCategory({
+  setIsClickCreateNewCategory,
+  categoryRef,
+  setFocus,
+  isFocus,
+}) {
   const [type, setType] = useState("");
   const userInfo = useUserInfo();
   const [, setUserCategory] = useUserCategory();
   const [, setActiveCategory] = useActiveCategory();
+  const createCategoryRef = useRef();
+
+  const handleClickAway = (event) => {
+    if (
+      createCategoryRef.current &&
+      !createCategoryRef.current.contains(event.target)
+    ) {
+      setFocus(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickAway);
+
+    return () => document.removeEventListener("mousedown", handleClickAway);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function createCategory(e) {
     e.preventDefault();
@@ -37,28 +59,31 @@ function CreateCategory({ setIsClickCreateNewCategory, categoryRef }) {
 
   return (
     <>
-      <Stack
-        direction="row"
-        sx={{
-          backgroundColor: "#212121",
-          borderRadius: "0.2em",
-          color: "white",
-        }}
-      >
+      {isFocus && (
         <Stack
+          ref={createCategoryRef}
           direction="row"
-          component="form"
-          onSubmit={createCategory}
-          sx={{ flexGrow: "1" }}
+          sx={{
+            backgroundColor: "#212121",
+            borderRadius: "0.2em",
+            color: "white",
+          }}
         >
-          <SideBarTextField
-            fullWidth
-            autoFocus
-            color="secondary"
-            onChange={(e) => setType(e.target.value)}
-          />
+          <Stack
+            direction="row"
+            component="form"
+            onSubmit={createCategory}
+            sx={{ flexGrow: "1" }}
+          >
+            <SideBarTextField
+              fullWidth
+              autoFocus
+              color="secondary"
+              onChange={(e) => setType(e.target.value)}
+            />
+          </Stack>
         </Stack>
-      </Stack>
+      )}
     </>
   );
 }

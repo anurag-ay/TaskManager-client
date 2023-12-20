@@ -14,8 +14,14 @@ function RightSideBar() {
   const [isClickCreateNewCategory, setIsClickCreateNewCategory] =
     useState(false);
   const [categories] = useUserCategory();
+  const [isFocus, setFocus] = useState(false);
 
   const categoryRef = useRef();
+
+  function handleCreateCategory() {
+    setFocus(true);
+    setIsClickCreateNewCategory(true);
+  }
 
   return (
     <Stack
@@ -48,6 +54,8 @@ function RightSideBar() {
 
         {isClickCreateNewCategory && (
           <CreateCategory
+            isFocus={isFocus}
+            setFocus={setFocus}
             categoryRef={categoryRef}
             setIsClickCreateNewCategory={setIsClickCreateNewCategory}
           />
@@ -57,7 +65,7 @@ function RightSideBar() {
       {/* Add New Category Button */}
       <Stack
         direction="row"
-        onClick={() => setIsClickCreateNewCategory(true)}
+        onClick={handleCreateCategory}
         sx={{
           color: "white",
           borderRadius: "0.3em",
