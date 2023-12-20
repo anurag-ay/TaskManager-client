@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# _Task Manager_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div style="text-align: center;">
+  <img src="https://img.shields.io/badge/license-ICS-green" alt="Image 1 description">
+  <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Image 2 description">
+  <img src="https://img.shields.io/badge/version-1.0.0-orange" alt="Image 3 description">
+  <img src="https://img.shields.io/badge/npm-v8.15.0-blue" alt="Image 3 description">
+  <img src="https://img.shields.io/badge/node-v16.17.0-yellow" alt="Image 3 description">
+</div>
 
-## Available Scripts
+</br>
+<center>
+A web Application to manage tasks
+</center>
+<center>
+<a href="https://taskmanageranurag.netlify.app">Live Project Link</a>
+</center>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **NodeJs** version `16.17.0` or above
+2. **MongoDB**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+### Step 1 Install Backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone Backend Repo in your Local Machine
 
-### `npm run build`
+```bash
+ Run command: git clone https://github.com/anurag-ay/TaskManager-server
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the cloned directory and open that directory in your code editor
+3. Change the `example.env` to `.env`, default configurations is already present there but you can add configuration of your choice.
+4. Run command `npm i` to install all necessary dependencies
+5. Run command `npm start` to run backend on your local machine
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Step 2 Install Frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone frontend Repo in your Local Machine
 
-### `npm run eject`
+```bash
+ Run command: git clone https://github.com/anurag-ay/TaskManager-client
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navigate to the cloned directory and open that directory in your code editor
+3. Run command `npm i` to install all necessary dependencies
+4. Run command `npm start` to run frontend on your local machine
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+When frontend and backend got up and running you can
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Signup the user
+2. Login the user
+3. Create tasks
+4. Delete tasks
+5. Edit Tasks
+6. Mark tasks as done or undone
+7. Mark task important or unimportant
+8. Create custom task category
+9. Delete category
+10. Logout the user
 
-## Learn More
+## Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img scr="https://github.com/anurag-ay/TaskManager-client/assets/50657380/214863a1-0370-4f0b-ad46-1c60f320e6af">
+<img scr="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ISC © **_termTranslate_**
