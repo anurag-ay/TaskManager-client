@@ -10,6 +10,7 @@ import UserCategoryProvider from "./context/userCategoryContext";
 import RenderTasksProvider from "./context/renderTasksContext";
 import ActiveCategoryProvider from "./context/activeCategoryContext";
 import ResponsiveProvider from "./context/responsiveContext";
+import IsProgressProvider from "./context/isProgressContext";
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
                   <RenderTasksProvider>
                     <ActiveCategoryProvider>
                       <ResponsiveProvider>
-                        <Home />
+                        <IsProgressProvider>
+                          <Home />
+                        </IsProgressProvider>
                       </ResponsiveProvider>
                     </ActiveCategoryProvider>
                   </RenderTasksProvider>
