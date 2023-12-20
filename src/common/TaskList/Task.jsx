@@ -69,7 +69,7 @@ function Task({ task }) {
 
     const markImportantTasks = userTasks.map((task) => {
       if (task._id === _id) {
-        return { ...task, isImportant: true };
+        return { ...task, isImportant: !importantTask };
       }
       return task;
     });
