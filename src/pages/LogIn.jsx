@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Typography, Box, Stack, Button } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Stack,
+  Button,
+  Snackbar,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
@@ -8,14 +16,16 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 function LogIn() {
   const singInWidth_sm = useMediaQuery("(min-width:414px)");
-
   const navigate = useNavigate();
-
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isProgress, setProgress] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setProgress(true);
     const payload = {
       userName,
       password,
@@ -25,11 +35,18 @@ function LogIn() {
       if (res.status === 200) {
         const token = res.data;
         localStorage.setItem("token", token);
+        setProgress(false);
         navigate("/");
         window.location.reload();
       }
     } catch (err) {
-      console.log(err);
+      setProgress(false);
+      setIsError(true);
+      if (err.name === "AxiosError") {
+        setErrorMessage(err.response.data);
+      } else {
+        setErrorMessage(err.message);
+      }
     }
   };
 
@@ -46,6 +63,11 @@ function LogIn() {
         height: "100vh",
       }}
     >
+      <Snackbar open={isError} autoHideDuration={2000}>
+        <Alert severity="error">
+          <AlertTitle>{errorMessage}</AlertTitle>
+        </Alert>
+      </Snackbar>
       <Stack
         flexDirection="row"
         sx={{
