@@ -8,6 +8,7 @@ import {
   Alert,
   Snackbar,
   LinearProgress,
+  Slide,
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -64,6 +65,12 @@ function SignUp() {
     navigate("/login");
   }
 
+  function handleClose(e, reason) {
+    if (reason === "clickaway") {
+      setIsError(false);
+    }
+  }
+
   return (
     <>
       {isProgress && (
@@ -82,7 +89,13 @@ function SignUp() {
           height: "100vh",
         }}
       >
-        <Snackbar open={isError} autoHideDuration={2000}>
+        <Snackbar
+          open={isError}
+          autoHideDuration={2000}
+          TransitionComponent={Slide}
+          onClose={handleClose}
+          anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+        >
           <Alert severity="error">
             <AlertTitle>{errorMessage}</AlertTitle>
           </Alert>

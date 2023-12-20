@@ -7,6 +7,7 @@ import {
   Snackbar,
   Alert,
   AlertTitle,
+  Slide,
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -53,6 +54,12 @@ function LogIn() {
   function handleClickSignup() {
     navigate("/signup");
   }
+
+  function handleClose(e, reason) {
+    if (reason === "clickaway") {
+      setIsError(false);
+    }
+  }
   return (
     <Stack
       alignItems={"center"}
@@ -63,7 +70,13 @@ function LogIn() {
         height: "100vh",
       }}
     >
-      <Snackbar open={isError} autoHideDuration={2000}>
+      <Snackbar
+        open={isError}
+        autoHideDuration={2000}
+        TransitionComponent={Slide}
+        onClose={handleClose}
+        anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+      >
         <Alert severity="error">
           <AlertTitle>{errorMessage}</AlertTitle>
         </Alert>
