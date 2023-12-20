@@ -6,6 +6,7 @@ import axios, { addTaskRoute } from "../../api/api";
 import { useUserTasks } from "../../context/userTaskContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
+import { useIsProgress } from "../../context/isProgressContext";
 
 function TaskListFooter({ taskBodyRef }) {
   const [taskTitle, setTaskTitle] = useState("");
@@ -14,26 +15,33 @@ function TaskListFooter({ taskBodyRef }) {
   const [, setAllTasks] = useUserTasks();
   const [, setRenderTask] = useRenderTask();
   const [activeCategory] = useActiveCategory();
+  const [, setIsProgress] = useIsProgress();
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    setIsProgress(true);
     const container = taskBodyRef.current;
     container.scrollTop = container.scrollHeight;
 
     if (!userInfo) return;
     if (!taskTitle) return;
 
-    const payload = {
-      title: taskTitle,
-      userId: userInfo._id,
-      categoryId: activeCategory,
-    };
-    const res = await axios.post(addTaskRoute, payload);
-    const newTask = res.data;
-    setRenderTask((prev) => [...prev, newTask]);
-    setAllTasks((prev) => [...prev, newTask]);
-    setTaskTitle("");
+    try {
+      const payload = {
+        title: taskTitle,
+        userId: userInfo._id,
+        categoryId: activeCategory,
+      };
+      const res = await axios.post(addTaskRoute, payload);
+      const newTask = res.data;
+      setRenderTask((prev) => [...prev, newTask]);
+      setAllTasks((prev) => [...prev, newTask]);
+      setIsProgress(false);
+      setTaskTitle("");
+    } catch (err) {
+      setIsProgress(false);
+      console.log(err);
+    }
   }
   return (
     <Box

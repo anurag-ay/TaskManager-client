@@ -8,6 +8,7 @@ import { useActiveCategory } from "../../context/activeCategoryContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useUserTasks } from "../../context/userTaskContext";
 import { useResponsive } from "../../context/responsiveContext";
+import { useIsProgress } from "../../context/isProgressContext";
 
 function Category({ category }) {
   const { type } = category;
@@ -17,10 +18,12 @@ function Category({ category }) {
   const [, setRenderTask] = useRenderTask();
   const [userTasks, setUserTasks] = useUserTasks();
   const [, setRes] = useResponsive();
+  const [, setIsProgress] = useIsProgress();
 
   async function deleteCategory() {
     if (!userInfo) return;
     if (!category) return;
+    setIsProgress(true);
 
     try {
       const res = await axios.delete(
@@ -39,7 +42,9 @@ function Category({ category }) {
       setActiveCategory(userInfo?.allTaskCategory);
       setUserCategory(newCategoryList);
       setRenderTask([]);
+      setIsProgress(false);
     } catch (err) {
+      setIsProgress(false);
       console.log(err);
     }
   }

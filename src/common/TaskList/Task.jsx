@@ -17,6 +17,7 @@ import axios, { deleteTaskRoute, updateTaskRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useRenderTask } from "../../context/renderTasksContext";
 import { useUserTasks } from "../../context/userTaskContext";
+import { useIsProgress } from "../../context/isProgressContext";
 import formatDate from "../../utils/formatDate";
 
 function Task({ task }) {
@@ -25,11 +26,12 @@ function Task({ task }) {
   const [renderTask, setRenderTask] = useRenderTask();
   const [userTasks, setUserTasks] = useUserTasks();
   const userInfo = useUserInfo();
+  const [, setIsProgress] = useIsProgress();
   const { title, isDone, updatedAt, isImportant } = task;
 
   async function handleTaskStatusChange(e) {
     const { _id, title, user, note, isImportant, category } = task;
-
+    setIsProgress(true);
     const payload = {
       _id,
       title,
@@ -52,12 +54,15 @@ function Task({ task }) {
 
       const notDoneListRender = renderTask.filter((task) => task._id !== _id);
       setRenderTask(notDoneListRender);
+      setIsProgress(false);
     } catch (err) {
+      setIsProgress(false);
       console.log(err);
     }
   }
 
   async function markImportant() {
+    setIsProgress(true);
     setImportantTask((prev) => !prev);
 
     const { _id, title, user, note, isDone, category } = task;
@@ -82,13 +87,16 @@ function Task({ task }) {
     };
     try {
       await axios.put(updateTaskRoute, payload);
+      setIsProgress(false);
     } catch (err) {
+      setIsProgress(false);
       console.log(err);
     }
   }
 
   async function deleteTask() {
     if (!userInfo) return;
+    setIsProgress(true);
 
     try {
       const res = await axios.delete(
@@ -107,7 +115,9 @@ function Task({ task }) {
       );
 
       setUserTasks(taskListAfterDeletionInUserTask);
+      setIsProgress(false);
     } catch (err) {
+      setIsProgress(false);
       console.log(err);
     }
   }

@@ -5,6 +5,7 @@ import axios, { addCategoryRoute } from "../../api/api";
 import { useUserInfo } from "../../context/userInfoContext";
 import { useUserCategory } from "../../context/userCategoryContext";
 import { useActiveCategory } from "../../context/activeCategoryContext";
+import { useIsProgress } from "../../context/isProgressContext";
 
 function CreateCategory({
   setIsClickCreateNewCategory,
@@ -19,6 +20,7 @@ function CreateCategory({
   const [, setUserCategory] = useUserCategory();
   const [, setActiveCategory] = useActiveCategory();
   const createCategoryRef = useRef();
+  const [, setIsProgress] = useIsProgress();
 
   const handleClickAway = (event) => {
     if (
@@ -38,7 +40,7 @@ function CreateCategory({
 
   async function createCategory(e) {
     e.preventDefault();
-
+    setIsProgress(true);
     const container = categoryRef.current;
     container.scrollTop = container.scrollHeight;
     if (!userInfo) return;
@@ -54,7 +56,9 @@ function CreateCategory({
       setUserCategory((prev) => [...prev, newCategory]);
       setActiveCategory(newCategory._id);
       setIsClickCreateNewCategory(false);
+      setIsProgress(false);
     } catch (err) {
+      setIsProgress(false);
       setIsError(true);
 
       if (err.name === "AxiosError") {
