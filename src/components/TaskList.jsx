@@ -24,15 +24,16 @@ function TaskList() {
   }
   return (
     <>
-      {isProgress && (
-        <Stack sx={{ width: "100%", color: "grey.500" }} spacing={2}>
-          <LinearProgress color="success" />
-        </Stack>
-      )}
+      <Stack
+        sx={{ width: "100%", backgroundColor: "#212121", height: "0.4vh" }}
+        spacing={2}
+      >
+        {isProgress && <LinearProgress color="success" />}
+      </Stack>
 
       <Box
         sx={{
-          height: "93.4vh",
+          height: "93.0vh",
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
