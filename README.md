@@ -59,7 +59,7 @@ When frontend and backend got up and running you can
 1. Signup the user
 2. Log in the user
 3. Create tasks
-4. Sort tasks
+4. Sort tasks according to date
 5. Delete tasks
 6. Edit Tasks
 7. Mark tasks as done or undone
